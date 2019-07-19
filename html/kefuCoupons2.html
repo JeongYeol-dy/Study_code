@@ -260,6 +260,21 @@
 
   function showMask(plugin) {
     $('#mask').show();
+    /* 蒙层展现的埋点 */
+    if (plugin == 'item') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150735','0708_promotion_show_sp','');
+      } else {
+        Beacon('TD20190708150750','0708_promotion_show_sppc','');
+      }
+    } else if (plugin == 'trade') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150709','0708_promotion_show_jy','');
+      } else {
+        Beacon('TD20190708150722','0708_promotion_show_jypc','');
+      }
+    }
+
     if (plugin == 'item') {
       $('#mask_dialog .item_dialog').show();
     } else if (plugin == 'trade') {
@@ -309,15 +324,15 @@
   $(function(){
     if (plugin == 'item') {
       if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-        Beacon('TD20190708150735','0708_promotion_show_sp','');
+        Beacon('TD20190708150735','0719_promotion_H5_show_sp','');
       } else {
-        Beacon('TD20190708150750','0708_promotion_show_sppc','');
+        Beacon('TD20190708150750','0719_promotion_H5_show_sppc','');
       }
     } else if (plugin == 'trade') {
       if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-        Beacon('TD20190708150709','0708_promotion_show_jy','');
+        Beacon('TD20190708150709','0719_promotion_H5_show_jy','');
       } else {
-        Beacon('TD20190708150722','0708_promotion_show_jypc','');
+        Beacon('TD20190708150722','0719_promotion_H5_show_jypc','');
       }
     }
     
@@ -347,15 +362,15 @@
     $('.new_btn').click(function(){
       if (plugin == 'item') {
         if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-          Beacon('TD20190708150735','0708_promotion_click_sp','');
+          Beacon('TD20190708150735','0719_promotion_btn1_click_sp','');
         } else {
-          Beacon('TD20190708150750','0708_promotion_click_sppc','');
+          Beacon('TD20190708150750','0719_promotion_btn1_click_sppc','');
         }
       } else if (plugin == 'trade') {
         if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-          Beacon('TD20190708150709','0708_promotion_click_jy','');
+          Beacon('TD20190708150709','0719_promotion_btn1_click_jy','');
         } else {
-          Beacon('TD20190708150722','0708_promotion_click_jypc','');
+          Beacon('TD20190708150722','0719_promotion_btn1_click_jypc','');
         }
       }
       
@@ -370,20 +385,20 @@
     $('.new_btn1').click(function(){
       if (plugin == 'item') {
         if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-          Beacon('TD20190708150735','0708_promotion_click_sp','');
+          Beacon('TD20190708150735','0719_promotion_btn2_click_sp','');
         } else {
-          Beacon('TD20190708150750','0708_promotion_click_sppc','');
+          Beacon('TD20190708150750','0719_promotion_btn2_click_sppc','');
         }
       } else if (plugin == 'trade') {
         if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-          Beacon('TD20190708150709','0708_promotion_click_jy','');
+          Beacon('TD20190708150709','0719_promotion_btn2_click_jy','');
         } else {
-          Beacon('TD20190708150722','0708_promotion_click_jypc','');
+          Beacon('TD20190708150722','0719_promotion_btn2_click_jypc','');
         }
       }
       
       if (plugin == 'item') {
-        window.location.href = 'https://tb.cn/ixPM26w';
+        window.location.href = 'https://tb.cn/BfXUF5w';
       } else if (plugin == 'trade') {
         window.location.href = 'https://tb.cn/TwAXF5w';
       }
