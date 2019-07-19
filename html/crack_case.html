@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clip-path 探索</title>
+</head>
+<style>
+    body,input,form{ margin:0; padding:0;}
+    body{ overflow:hidden; background-color:#0FF;}
+    
+    #content{ width:600px; height:400px; margin:10px auto;
+        -webkit-transform-style:preserve-3d;
+        -webkit-perspective:800px;
+        -webkit-perspective-origin:center center;
+        transform-style:preserve-3d;
+        perspective:800px;
+        perspective-origin:center center;
+    }
+    
+    #wrap{ width:560px; height:360px; box-shadow:2px 2px 4px 1px black; padding:20px; background-color:white; 
+        transition:all 4s ease; 
+        transform:rotateX(0deg) rotateY(0deg); 
+         -webkit-transform-origin:center;
+    }
+    
+    
+    #wrap .fline{ height:70px; padding:10px; line-height:70px; text-align:center;}
+    .fline span{ font-size:24px; font-family:Verdana, Geneva, sans-serif;}
+    .fline input{ height:24px; width:200px;}
+    .lastline input{ width:120px;}
+</style>
+<body>
+    <div id="content">
+        <div id="wrap">
+            <form action=".">
+                <div class="fline">
+                    <span>Name:</span><input type="text" >
+                </div>
+                <div class="fline">
+                    <span>Password:</span><input type="password" >
+                </div>
+                <div class="fline">
+                    <span>Repeat Pass:</span><input type="password" >
+                </div>
+                <div class="fline lastline">
+                    <input type="button" value="提交" >
+                    <input type="button" value="关闭" id="shutdown" >
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    var oWrap = document.getElementById('wrap'),
+        oForm = oWrap.getElementsByTagName('form')[0],
+        oShutdown = document.getElementById('shutdown'),
+        oContent = document.getElementById('content');
+        
+    oShutdown.onclick = function(){
+        var w = oWrap.offsetWidth,
+            h = oWrap.offsetHeight;
+            
+        var arr = cut(3, [[0,0],[w,0],[w,h],[0,h]], false);　　//+7因为有7像素的阴影
+        // var arr = cut(3, [[0,0],[w+7,0],[w+7,h+7],[0,h+7]], false);　　//+7因为有7像素的阴影
+        
+        duang(oWrap, arr);
+    }
+    
+    function duang(obj, arr){
+        var left = obj.offsetLeft,
+            top = obj.offsetTop;
+            
+        var    aF = [];
+        
+        for(var i = 0;i < arr.length;i++){
+            var tmpObj = obj.cloneNode(true);
+            tmpObj.style.position = 'absolute';
+            tmpObj.style.top = obj.offsetTop - 10 + 'px';
+            tmpObj.className = 'test';
+            
+            
+            str = 'polygon(';
+            
+            for(var j = 0;j < arr[i].length;j++){
+                str += arr[i][j][0] + 'px ';
+                str += arr[i][j][1] + 'px,'
+            }
+            
+            str = str.slice(0, -1) + ')';
+
+            tmpObj.style.WebkitClipPath = str;
+            tmpObj.style.clipPath = str;
+            
+            
+            aF.push((function(obj, x, y){
+                
+                return function(t){
+                    obj.style.transform = 'rotateX(' + t*x + 'deg) rotateY(' + t*y + 'deg)';
+                }
+                
+            })(tmpObj, Math.floor(Math.random()*10 + 2), Math.floor(Math.random()*10 + 2)));
+            
+            oContent.appendChild(tmpObj);
+        }
+        
+        var n = 0;
+        
+        setInterval(function(){
+            
+            for(var k = 0;k < aF.length;k++){
+                aF[k](n);
+            }
+            n++;
+            
+        }, 30);
+        
+        obj.style.display = 'none';
+    }
+    
+    function cut(iLayer, aPoint, isThin){
+        var aResult = [];
+        
+        if(arguments[2] == undefined){
+            isThin = false;
+        }
+        
+        var x = [],
+            y = [];
+            
+        for(var i = 0;i < aPoint.length;i++){
+            x.push(aPoint[i][0]);
+            y.push(aPoint[i][1]);
+        }
+        
+        var dealX = x.sort();
+        var dealY = y.sort();
+        var randX,randY;
+        console.log(dealX, dealY);
+        
+        var maxX = Math.max.apply(dealX, dealX),
+            maxY = Math.max.apply(dealY, dealY),
+            minX = Math.min.apply(dealX, dealX),
+            minY = Math.min.apply(dealY, dealY);
+            
+        if(iLayer == 1){
+            if(!isThin){
+                randX = Math.floor((Math.random() * (0.6) + 0.2) * (maxX - minX)) + minX;
+                randY = Math.floor((Math.random() * (0.6) + 0.2) * (maxY - minY)) + minY;
+            }else{
+                randX = Math.floor(Math.random() * (maxX - minX)) + minX;
+                randY = Math.floor(Math.random() * (maxY - minY)) + minY;
+            }
+            
+            for(i = 0;i < aPoint.length;i++){
+                var tmp = aPoint[i+1] || aPoint[0];
+                aResult.push([aPoint[i], tmp, [randX, randY]]);
+            }
+        }else{
+            randX = (maxX - minX) / 2 + minX;
+            randY = (maxY - minY) / 2 + minY;
+
+            aResult = aResult.concat(cut(iLayer - 1, [[minX,minY],[randX,minY],[randX,randY],[minX,randY]], isThin));
+            aResult = aResult.concat(cut(iLayer - 1, [[maxX,minY],[maxX,randY],[randX,randY],[randX,minY]], isThin));
+            aResult = aResult.concat(cut(iLayer - 1, [[maxX,maxY],[randX,maxY],[randX,randY],[maxX,randY]], isThin));
+            aResult = aResult.concat(cut(iLayer - 1, [[minX,maxY],[minX,randY],[randX,randY],[randX,maxY]], isThin));
+        }
+        
+        return aResult;
+    }
+</script>
+</html>

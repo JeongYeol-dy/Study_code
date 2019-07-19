@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>领取优惠券</title>
+    <style type="text/css">
+      * {
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100vw;
+        overflow-x: hidden;
+      }
+      #container {
+        position: relative;
+        width: 100vw;  
+      }
+      #centerImg {
+        width: 100vw;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        -webkit-background-repeat: no-repeat;
+        -o-background-repeat: no-repeat;
+        background-size: 100%;
+        -webkit-background-size: 100%;
+        -o-background-size: 100%;
+        background-position: center 0;
+      }
+      #linkBtn {
+        display: inline-block;
+        position: absolute;
+        width: 460px;
+        height: 160px;
+        top: 758px;
+        left: calc(50% - 160px);
+        z-index: 10;
+      }
+      #funcImage {
+        position: absolute;
+        width: 700px;
+        height: 300px;
+        top: 992px;
+        left: calc(50% - 350px);
+        overflow: hidden;
+        z-index: 10;
+      }
+      #funcImage > .funcImg {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+      #newlinkBtn {
+        display: inline-block;
+        position: absolute;
+        width: 460px;
+        height: 160px;
+        top: 758px;
+        left: calc(50% - 160px);
+        z-index: 8;
+        cursor: pointer;
+      }
+      /* 展现手机的背景图 */
+      @media screen and (max-width: 1030px) {
+        #centerImg {
+          background-image: url('http://q.aiyongbao.com/item/Htmlnew/coupons/mb_bg.png');
+        }
+        #container {
+          height: 100vh;
+          background: #ffad2f;
+        }
+      }
+      /* 展现PC的背景图 */
+      @media screen and (min-width: 1031px) {
+        #centerImg {
+          background: url('http://q.aiyongbao.com/item/Htmlnew/coupons/pc_bg.png') top center no-repeat;
+          height: 1334px;
+        }
+      }
+      #mask {
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 19;
+      }
+      #mask_dialog {
+        position: absolute;
+        width: 700px;
+        top: -800px;
+        left: calc(50% - 350px);
+      }
+      #mask_dialog .dialog {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 350px);
+        z-index: 20;
+      }
+      #mask_dialog .price {
+        position: absolute;
+        top: 374px;
+        left: calc(50% - 100px);
+        z-index: 25;
+      }
+      #mask_dialog .trade_price, #mask_dialog .item_price {
+        display: none;
+      }
+      #wrap_btns {
+        width: 460px;
+        height: 160px;
+        position: absolute;
+        top: 740px;
+        left: calc(50% - 230px);
+        z-index: 8;
+        -webkit-transform-style: preserve-3d;
+        -webkit-perspective: 800px;
+        -webkit-perspective-origin: center center;
+        transform-style: preserve-3d;
+        perspective: 800px;
+        perspective-origin: center center;
+      }
+      #wrap_btns .link_btn {
+        display: block;
+        position: absolute;
+        width: 460px;
+        height: 160px;
+        top: 0;
+        left: 0;
+        cursor: auto;
+      }
+      #wrap_btns .former_btn_animate {
+        transition: all 1s;
+        transform: rotateX(0deg);
+        -webkit-transform-origin: bottom;
+        /* animation: myOpacity 1s infinite;
+        -webkit-animation: myOpacity 1s infinite; */
+      }
+      @keyframes myOpacity {
+        from {
+          opacity: 1;
+        } to {
+          opacity: 0;
+        }
+      }
+      #wrap_btns .new_btn {
+        /* display: none; */
+        z-index: 9;
+        cursor: pointer;
+      }
+    </style>
+    <link rel="prefetch" href="http://q.aiyongbao.com/item/Htmlnew/coupons/item_former_btn.png">
+    <link rel="prefetch" href="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_former_btn.png">
+</head>
+
+<body>
+  <div id="container">
+    <!-- 页面蒙层 -->
+    <div id="mask">
+        <div id="mask_dialog">
+          <img class="dialog" src="http://q.aiyongbao.com/item/Htmlnew/coupons/coupons_dialog.png">
+          <img class="price item_price" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_discount_price.png">
+          <img class="price trade_price" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_discount_price.png">
+        </div>
+    </div>
+    <!-- 展示页面的图片 -->
+    <div id="centerImg"></div>
+    <!-- 按钮链接 -->
+    <!-- <canvas id="linkBtn" width="460px" height="160px">该浏览器不支持canvas</canvas>
+    <canvas id="newlinkBtn" width="460px" height="160px">该浏览器不支持canvas</canvas> -->
+    <div id="wrap_btns">
+      <a class="link_btn former_btn" href="javascript:void(0)"></a>
+      <a class="link_btn new_btn" href="javascript:void(0)"></a>
+    </div>
+    <!-- 功能图片展示 -->
+    <div id="funcImage">
+      <img class="funcImg trade_func trade_func_1" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_func_01.png" alt="">
+      <img class="funcImg trade_func trade_func_2" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_func_02.png" alt="">
+      <img class="funcImg item_func item_func_1" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_func_01.png" alt="">
+      <img class="funcImg item_func item_func_2" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_func_02.png" alt="">
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="http://q.aiyongbao.com/trade/web/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script> -->
+<script type="text/javascript">
+  let windowWidth; // 视口宽度（除去滚动条）
+  let plugin = GetUrlParam('plugin'); /* 交易／商品 */
+  var oContent = document.getElementById('wrap_btns');
+  var img = new Image();
+  var imgNew = new Image();
+  var index = 0;   /* 轮播图的下标 */
+
+  if (plugin == 'item') {
+    index = 2;
+    $('.item_func_1').show();
+    $('.trade_func_1').hide();
+  } else if (plugin == 'trade') {
+    index = 0;
+    $('.trade_func_1').show();
+  }
+
+  /* 获取URL中参数，判断是交易还是商品 */
+  function GetUrlParam(paraName) {
+    var url = document.location.toString();
+    var arrObj = url.split("?");
+
+    if (arrObj.length > 1) {
+      var arrPara = arrObj[1].split("&");
+      var arr;
+
+      for (var i = 0; i < arrPara.length; i++) {
+        arr = arrPara[i].split("=");
+
+        if (arr != null && arr[0] == paraName) {
+            return arr[1];
+        }
+      }
+      return "";
+    }
+    else {
+      return "";
+    }
+  }
+
+  /* 埋点方法 */
+  function Beacon(EventParent, EventCode, userNick) {
+    var n = new Image;
+    var url = "http://mcs.aiyongbao.com/1.gif?t=" + (new Date).getTime() + "&p=" + EventParent + "&n=" + encodeURIComponent(userNick) + "&e=" + EventCode;
+    n.src = url;
+    n.style.display = 'none';
+    document.getElementById("container").appendChild(n);
+  }
+
+  /* 根据屏幕宽度修改尺寸 */
+  function autoResize (oriLength) {
+    let newResize;
+    if (windowWidth <= 1030) {
+      newResize = windowWidth * (oriLength / 750);
+    } else {
+      newResize = oriLength;
+    }
+    return newResize;
+  }
+
+  /* 重新计算的函数 */
+  function resizeFunc() {
+    windowWidth = document.body.clientWidth;
+    /* 改变背景图的高度 */
+    $('#centerImg').css('height', autoResize(1334));
+
+    $('#wrap_btns').css({
+      width: autoResize(460),
+      height: autoResize(160),
+      top: autoResize(740),
+      left: 'calc(50% - ' + autoResize(460)/2 + 'px)',
+    });
+    $('.link_btn').css({
+      width: autoResize(460),
+      height: autoResize(160),
+    });
+
+    $('#funcImage').css({
+      width: autoResize(700),
+      height: autoResize(300),
+      top: autoResize(992),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+    
+    $('.funcImg').css('width', autoResize(700));
+
+    $('.dialog').css({
+      width: autoResize(700),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+    $('.price').css({
+      top: autoResize(374),
+      width: autoResize(96),
+      left: 'calc(50% - ' + autoResize(100) + 'px)',
+    });
+
+    $('#mask_dialog').css({
+      width: autoResize(700),
+      top: autoResize(-800),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+  }
+
+  function showMask(plugin) {
+    $('#mask').show();
+    if (plugin == 'item') {
+      $('#mask_dialog .item_price').show();
+      $('#wrap_btns .former_btn').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/item_former_btn.png")',
+        backgroundSize: '100%',
+      });
+    } else if (plugin == 'trade') {
+      $('#mask_dialog .trade_price').show();
+      $('#wrap_btns .former_btn').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/trade_former_btn.png")',
+        backgroundSize: '100%',
+      });
+    }
+    $('#mask_dialog').animate({
+      top: autoResize(100)
+    }, 1000, function () {
+      setTimeout(function () {
+        $('#mask_dialog').animate({
+          top: autoResize(-800)
+        }, 1000, function () {
+          $('#mask').hide();
+
+          var oFormerBtn = document.getElementsByClassName('former_btn')[0];
+          var w = oFormerBtn.offsetWidth,
+              h = oFormerBtn.offsetHeight;
+            
+          var arr = cutImage(3, [[0,0],[w,0],[w,h],[0,h]], false);
+          
+          playAnimation(oFormerBtn, arr);
+
+          setTimeout(function() {
+            normalShowBtn(plugin);
+            $('.former_btn_animate').siblings('.former_btn_animate').remove();
+          }, 2000);
+        });
+      }, 2000);
+    });
+  }
+
+  function normalShowBtn(plugin) {
+    $('.new_btn').show();
+    if (plugin == 'item') {
+      $('#wrap_btns .new_btn').css({
+        display: 'block',
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/item_discount_btn_2.png")',
+        backgroundSize: '100%',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      });
+    } else if (plugin == 'trade') {
+      $('#wrap_btns .new_btn').css({
+        display: 'block',
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/trade_discount_btn_1.png")',
+        backgroundSize: '100%',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      });
+    }
+  }
+
+  function imageSlide() {
+    index++;
+    if (plugin == 'item' && index > 3) {
+      index = 2;
+    } else if (plugin == 'trade' && index > 1) {
+      index = 0;
+    }
+    $('#funcImage img').eq(index).show().animate({ top: autoResize(-300) }, 'slow').siblings().css({ top: autoResize(300) }).animate({ top: 0 }, 'slow');
+  }
+
+  function playAnimation(obj, arr) {
+    var left = obj.offsetLeft,
+        top = obj.offsetTop;
+
+    var aF = [];
+
+    for (var i = 0; i < arr.length; i++) {
+      var tmpObj = obj.cloneNode(true);
+      tmpObj.style.position = 'absolute';
+      tmpObj.style.width = autoResize(460) + 'px';
+      tmpObj.style.height = autoResize(160) + 'px';
+      tmpObj.style.top = obj.offsetTop + 'px';
+      tmpObj.style.animation = 'myOpacity 3s';
+      tmpObj.className = 'test former_btn former_btn_animate';
+
+
+      str = 'polygon(';
+
+      for (var j = 0; j < arr[i].length; j++) {
+        str += arr[i][j][0] + 'px ';
+        str += arr[i][j][1] + 'px,'
+      }
+
+      str = str.slice(0, -1) + ')';
+
+      tmpObj.style.WebkitClipPath = str;
+      tmpObj.style.clipPath = str;
+
+
+      aF.push((function (obj, x, y) {
+
+        return function (t) {
+          obj.style.transform = 'rotateX(' + t * x + 'deg)';
+        }
+
+      })(tmpObj, Math.floor(Math.random() * 10 + 2), Math.floor(Math.random() * 10 + 2)));
+
+      oContent.appendChild(tmpObj);
+    }
+
+    var n = 0;
+
+    setInterval(function () {
+
+      for (var k = 0; k < aF.length; k++) {
+        aF[k](n);
+      }
+      n++;
+
+    }, 30);
+
+    obj.style.display = 'none';
+  }
+
+  function cutImage(iLayer, aPoint, isThin) {
+    var aResult = [];
+
+    if (arguments[2] == undefined) {
+      isThin = false;
+    }
+
+    var x = [],
+      y = [];
+
+    for (var i = 0; i < aPoint.length; i++) {
+      x.push(aPoint[i][0]);
+      y.push(aPoint[i][1]);
+    }
+
+    var dealX = x.sort();
+    var dealY = y.sort();
+    var randX, randY;
+
+    console.log(dealX, dealY);
+
+    var maxX = Math.max.apply(dealX, dealX),
+        maxY = Math.max.apply(dealY, dealY),
+        minX = Math.min.apply(dealX, dealX),
+        minY = Math.min.apply(dealY, dealY);
+
+    if (iLayer == 1) {
+      if (!isThin) {
+        randX = Math.floor((Math.random() * (0.6) + 0.2) * (maxX - minX)) + minX;
+        randY = Math.floor((Math.random() * (0.6) + 0.2) * (maxY - minY)) + minY;
+      } else {
+        randX = Math.floor(Math.random() * (maxX - minX)) + minX;
+        randY = Math.floor(Math.random() * (maxY - minY)) + minY;
+      }
+
+      for (i = 0; i < aPoint.length; i++) {
+        var tmp = aPoint[i + 1] || aPoint[0];
+        aResult.push([aPoint[i], tmp, [randX, randY]]);
+      }
+    } else {
+      randX = (maxX - minX) / 2 + minX;
+      randY = (maxY - minY) / 2 + minY;
+
+      aResult = aResult.concat(cutImage(iLayer - 1, [[minX, minY], [randX, minY], [randX, randY], [minX, randY]], isThin));
+      aResult = aResult.concat(cutImage(iLayer - 1, [[maxX, minY], [maxX, randY], [randX, randY], [randX, minY]], isThin));
+      aResult = aResult.concat(cutImage(iLayer - 1, [[maxX, maxY], [randX, maxY], [randX, randY], [maxX, randY]], isThin));
+      aResult = aResult.concat(cutImage(iLayer - 1, [[minX, maxY], [minX, randY], [randX, randY], [randX, maxY]], isThin));
+    }
+
+    return aResult;
+  }
+
+  $(function(){
+    if (plugin == 'item') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150735','0708_promotion_show_sp','');
+      } else {
+        Beacon('TD20190708150750','0708_promotion_show_sppc','');
+      }
+    } else if (plugin == 'trade') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150709','0708_promotion_show_jy','');
+      } else {
+        Beacon('TD20190708150722','0708_promotion_show_jypc','');
+      }
+    }
+    
+    /* 设置页面的大小 */
+    resizeFunc();
+
+    /* 设置定时器，滚动轮播图 */
+    var interval = null;
+    clearInterval(interval);
+
+    /* 判断是否进入过该页面，已经进入过该页面则直接展示付款按钮 */
+    if (plugin == 'item' && !localStorage.getItem('hasEnterItem')) {
+      showMask(plugin);
+    } else if (plugin == 'trade' && !localStorage.getItem('hasEnterTrade')) {
+      showMask(plugin);
+    } else if (plugin == 'item' && localStorage.getItem('hasEnterItem') == 'true') {
+      normalShowBtn(plugin);
+    } else if (plugin == 'trade' && localStorage.getItem('hasEnterTrade') == 'true') {
+      normalShowBtn(plugin);
+    }
+    /* 展现轮播图 */
+    interval = setInterval(imageSlide, 2500);
+
+    /* 点击链接 */
+    $('.link_btn').click(function(){
+      if (plugin == 'item') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150735','0708_promotion_click_sp','');
+        } else {
+          Beacon('TD20190708150750','0708_promotion_click_sppc','');
+        }
+      } else if (plugin == 'trade') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150709','0708_promotion_click_jy','');
+        } else {
+          Beacon('TD20190708150722','0708_promotion_click_jypc','');
+        }
+      }
+      
+      if (plugin == 'item') {
+        window.location.href = 'https://tb.cn/ixPM26w';
+      } else if (plugin == 'trade') {
+        window.location.href = 'https://tb.cn/iu0M26w';
+      }
+    });
+
+
+    /* 设置进入页面的本地缓存，同一设备第二次进入该页面时不展示特效及蒙层效果 */
+    if (plugin == 'item') {
+      localStorage.setItem('hasEnterItem', true);
+    } else if (plugin == 'trade') {
+      localStorage.setItem('hasEnterTrade', true);
+    }
+  });
+
+  /* 当屏幕尺寸有所变化时，重新计算各个图片的大小位置 */
+  window.onresize = function () {
+    resizeFunc();
+  }
+</script>
+
+</html>

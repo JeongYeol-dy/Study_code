@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex01</title>
+</head>
+
+<style>
+    #box {
+        display: flex;              /* 设为 flex 布局之后，子元素的 float、clear、vertical-align 属性都将失效 */
+        /* 设置在父元素上面的属性 */
+        flex-direction: row;        /* 决定主轴的方向 row(默认) 水平方向，起点在左端 | row-reverse 水平方向，起点在右端 | column 垂直方向，起点在上沿 | column-reverse 垂直方向，起点在下沿  */
+        flex-wrap: nowrap;          /* 子元素换行方式 nowrap(默认) 不换行 | wrap 换行，第一行在上方 | wrap-reverse 换行，第一行在下方 */
+        flex-flow: row nowrap;      /* 是 flex-direction 和 flex-wrap 的简写方式 */
+        justify-content: flex-end;  /* 定义了项目在主轴上的对齐方式 flex-start(默认) 左对齐 | flex-end 右对齐 | center 居中对齐 | space-between 两端对齐，项目之间的间隔都相等 | space-around 每个项目两侧的间距相等  */
+        align-items: stretch;       /* 定义项目在交叉轴上的对齐方式 stretch(默认) 如果项目未指定高度或设为 auto，则撑满整个容器的高度 | flex-start 交叉轴的起点对齐 | flex-end 交叉轴的终点对齐 | center 交叉轴的中点对齐 | baseline 项目的第一行文字的基线对齐 */
+        align-content: stretch;     /* 定义了多根轴线的对齐方式 stretch(默认) 轴线占满整个交叉轴 | flex-start 与交叉轴的起点对齐 | flex-end 与交叉轴的终点对齐 | center 与交叉轴的中点对齐 | space-between 与交叉轴两端对齐，轴线之间的间隔平均分布 | space-around 每根轴线的两侧距离都相等 */
+        
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+        border: 1px solid greenyellow;
+    }
+    .inner {
+        /* 设置在子元素上面的属性 */
+        order: 0;                   /* 定义项目的排列顺序，数值越小，排列越靠前，默认值为 0 */
+        flex-grow: 0;               /* 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大 */
+        flex-shrink: 1;             /* 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 */
+        flex-basis: auto;           /* 定义了在分配多余的空间之前，项目占据的主轴空间浏览器根据这个属性，计算主轴是否有多余的空间。默认值是 auto，即项目本来的大小 */
+        flex: none;                 /* 是flex-grow、flex-basis、flex-shrink 的简写。默认值是 0 1 auto(后两个属性可省略) : flex: auto;(1 1 auto) flex: none;(0 0 auto)*/ 
+        align-self: auto;           /* 允许单个项目可以与其它项目有不一样的的对齐方式。默认值是 auto，表示继承父元素的 align-items 属性 stretch | flex-start | flex-end | center | baseline */
+        
+        width: 100px;
+        height: 100px;
+        border: 1px dotted burlywood;
+        background-color: blanchedalmond;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <div class="inner">1</div>
+        <div class="inner">2</div>
+        <div class="inner">3</div>
+        <div class="inner">4</div>
+        <!-- <div class="inner">5</div>
+        <div class="inner">6</div>
+        <div class="inner">7</div> -->
+    </div>
+</body>
+
+</html>
