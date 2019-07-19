@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta id="WV.Meta.Share.Image" value="https://q.aiyongbao.com/trade/web/images/aiyongLogo.png">
+  <title>爱用用户专享优惠券</title>
+    <style type="text/css">
+      * {
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100vw;
+        overflow-x: hidden;
+      }
+      #container {
+        position: relative;
+        width: 100vw;  
+      }
+      #centerImg {
+        width: 100vw;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        -webkit-background-repeat: no-repeat;
+        -o-background-repeat: no-repeat;
+        background-size: 100%;
+        -webkit-background-size: 100%;
+        -o-background-size: 100%;
+        background-position: center 0;
+      }
+      #linkBtn {
+        display: inline-block;
+        position: absolute;
+        width: 460px;
+        height: 160px;
+        top: 758px;
+        left: calc(50% - 160px);
+        z-index: 10;
+      }
+      #funcImage {
+        position: absolute;
+        width: 700px;
+        height: 300px;
+        top: 992px;
+        left: calc(50% - 350px);
+        overflow: hidden;
+        z-index: 10;
+      }
+      #funcImage > .funcImg {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+      #newlinkBtn {
+        display: inline-block;
+        position: absolute;
+        width: 460px;
+        height: 160px;
+        top: 758px;
+        left: calc(50% - 160px);
+        z-index: 8;
+        cursor: pointer;
+      }
+      /* 展现手机的背景图 */
+      @media screen and (max-width: 1030px) {
+        #centerImg {
+          background-image: url('http://q.aiyongbao.com/item/Htmlnew/coupons/mb_bg.png');
+        }
+        #container {
+          height: 100vh;
+          background: #ffad2f;
+        }
+      }
+      /* 展现PC的背景图 */
+      @media screen and (min-width: 1031px) {
+        #centerImg {
+          background: url('http://q.aiyongbao.com/item/Htmlnew/coupons/pc_bg.png') top center no-repeat;
+          height: 1334px;
+        }
+      }
+      #mask {
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 19;
+      }
+      #mask_dialog {
+        position: absolute;
+        width: 700px;
+        top: -800px;
+        left: calc(50% - 350px);
+      }
+      #mask_dialog .dialog {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: calc(50% - 350px);
+        z-index: 20;
+      }
+      #wrap_btns {
+        display: flex;
+        flex-direction: row;
+        width: 750px;
+        height: 200px;
+        position: absolute;
+        top: 705px;
+        left: calc(50% - 375px);
+        z-index: 8;
+      }
+      #wrap_btns .link_btn {
+        display: block;
+        width: 375px;
+        height: 200px;
+        background-size: 100% !important;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        cursor: pointer;
+      }
+      @keyframes myOpacity {
+        from {
+          opacity: 1;
+        } to {
+          opacity: 0;
+        }
+      }
+    </style>
+</head>
+
+<body>
+  <div id="container">
+    <!-- 页面蒙层 -->
+    <div id="mask">
+        <div id="mask_dialog">
+          <img class="dialog trade_dialog" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_coupons_dialog.png">
+          <img class="dialog item_dialog" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_coupons_dialog.png">
+        </div>
+    </div>
+    <!-- 展示页面的图片 -->
+    <div id="centerImg"></div>
+    <div id="wrap_btns">
+        <a class="link_btn new_btn" href="javascript:void(0)"></a>
+        <a class="link_btn new_btn1" href="javascript:void(0)"></a>
+    </div>
+    <!-- 功能图片展示 -->
+    <div id="funcImage">
+        <img class="funcImg trade_func trade_func_1" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_func_04.png" alt="">
+        <img class="funcImg trade_func trade_func_2" src="http://q.aiyongbao.com/item/Htmlnew/coupons/trade_func_05.png" alt="">
+      <img class="funcImg item_func item_func_1" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_func_03.png" alt="">
+      <img class="funcImg item_func item_func_2" src="http://q.aiyongbao.com/item/Htmlnew/coupons/item_func_04.png" alt="">
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="http://q.aiyongbao.com/trade/web/js/jquery.min.js"></script>
+<script type="text/javascript">
+  let windowWidth; // 视口宽度（除去滚动条）
+  let plugin = GetUrlParam('plugin'); /* 交易／商品 */
+  var oContent = document.getElementById('wrap_btns');
+  var img = new Image();
+  var imgNew = new Image();
+  var index = 0;   /* 轮播图的下标 */
+
+  if (plugin == 'item') {
+    index = 2;
+    $('.item_func_1').show();
+    $('.trade_func_1').hide();
+  } else if (plugin == 'trade') {
+    index = 0;
+    $('.trade_func_1').show();
+  }
+
+  /* 获取URL中参数，判断是交易还是商品 */
+  function GetUrlParam(paraName) {
+    var url = document.location.toString();
+    var arrObj = url.split("?");
+
+    if (arrObj.length > 1) {
+      var arrPara = arrObj[1].split("&");
+      var arr;
+
+      for (var i = 0; i < arrPara.length; i++) {
+        arr = arrPara[i].split("=");
+
+        if (arr != null && arr[0] == paraName) {
+            return arr[1];
+        }
+      }
+      return "";
+    }
+    else {
+      return "";
+    }
+  }
+
+  /* 埋点方法 */
+  function Beacon(EventParent, EventCode, userNick) {
+    var n = new Image;
+    var url = "http://mcs.aiyongbao.com/1.gif?t=" + (new Date).getTime() + "&p=" + EventParent + "&n=" + encodeURIComponent(userNick) + "&e=" + EventCode;
+    n.src = url;
+    n.style.display = 'none';
+    document.getElementById("container").appendChild(n);
+  }
+
+  /* 根据屏幕宽度修改尺寸 */
+  function autoResize (oriLength) {
+    let newResize;
+    if (windowWidth <= 1030) {
+      newResize = windowWidth * (oriLength / 750);
+    } else {
+      newResize = oriLength;
+    }
+    return newResize;
+  }
+
+  /* 重新计算的函数 */
+  function resizeFunc() {
+    windowWidth = document.body.clientWidth;
+    /* 改变背景图的高度 */
+    $('#centerImg').css('height', autoResize(1334));
+
+    $('#wrap_btns').css({
+      width: autoResize(750),
+      height: autoResize(200),
+      top: autoResize(705),
+      left: 'calc(50% - ' + autoResize(750)/2 + 'px)',
+    });
+    $('.link_btn').css({
+      width: autoResize(375),
+      height: autoResize(200),
+    });
+
+    $('#funcImage').css({
+      width: autoResize(700),
+      height: autoResize(300),
+      top: autoResize(992),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+    
+    $('.funcImg').css('width', autoResize(700));
+
+    $('.dialog').css({
+      width: autoResize(700),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+
+    $('#mask_dialog').css({
+      width: autoResize(700),
+      top: autoResize(-800),
+      left: 'calc(50% - ' + autoResize(700)/2 + 'px)',
+    });
+  }
+
+  function showMask(plugin) {
+    $('#mask').show();
+    if (plugin == 'item') {
+      $('#mask_dialog .item_dialog').show();
+    } else if (plugin == 'trade') {
+      $('#mask_dialog .trade_dialog').show();
+    }
+    $('#mask_dialog').animate({
+      top: autoResize(100)
+    }, 1000, function () {
+      setTimeout(function () {
+        $('#mask_dialog').animate({
+          top: autoResize(-800)
+        }, 1000, function () {
+          $('#mask').hide();
+        });
+      }, 2000);
+    });
+  }
+
+  function normalShowBtn(plugin) {
+    if (plugin == 'item') {
+      $('#wrap_btns .new_btn').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/item_discount_btn_5.png")',
+      });
+      $('#wrap_btns .new_btn1').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/item_discount_btn_6.png")',
+      });
+    } else if (plugin == 'trade') {
+      $('#wrap_btns .new_btn').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/trade_discount_btn_5.png")',
+      });
+      $('#wrap_btns .new_btn1').css({
+        background: 'url("http://q.aiyongbao.com/item/Htmlnew/coupons/trade_discount_btn_6.png")',
+      });
+    }
+  }
+
+  function imageSlide() {
+    index++;
+    if (plugin == 'item' && index > 3) {
+      index = 2;
+    } else if (plugin == 'trade' && index > 1) {
+      index = 0;
+    }
+    $('#funcImage img').eq(index).show().animate({ top: autoResize(-300) }, 'slow').siblings().css({ top: autoResize(300) }).animate({ top: 0 }, 'slow');
+  }
+
+  $(function(){
+    if (plugin == 'item') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150735','0708_promotion_show_sp','');
+      } else {
+        Beacon('TD20190708150750','0708_promotion_show_sppc','');
+      }
+    } else if (plugin == 'trade') {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        Beacon('TD20190708150709','0708_promotion_show_jy','');
+      } else {
+        Beacon('TD20190708150722','0708_promotion_show_jypc','');
+      }
+    }
+    
+    /* 设置页面的大小 */
+    resizeFunc();
+
+    /* 设置定时器，滚动轮播图 */
+    var interval = null;
+    clearInterval(interval);
+
+    /* 轮播图-交易手机为手机打单，PC为打单发货 */
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent) && plugin == 'trade') {
+        $('.trade_func_1').attr('src', 'http://q.aiyongbao.com/item/Htmlnew/coupons/trade_func_03.png');
+    }
+
+    /* 判断是否进入过该页面，已经进入过该页面则直接展示付款按钮 */
+    if (plugin == 'item' && !localStorage.getItem('hasEnterItem')) {
+      showMask(plugin);
+    } else if (plugin == 'trade' && !localStorage.getItem('hasEnterTrade')) {
+      showMask(plugin);
+    }
+    normalShowBtn(plugin);
+    /* 展现轮播图 */
+    interval = setInterval(imageSlide, 2500);
+
+    /* 点击链接-半年 */
+    $('.new_btn').click(function(){
+      if (plugin == 'item') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150735','0708_promotion_click_sp','');
+        } else {
+          Beacon('TD20190708150750','0708_promotion_click_sppc','');
+        }
+      } else if (plugin == 'trade') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150709','0708_promotion_click_jy','');
+        } else {
+          Beacon('TD20190708150722','0708_promotion_click_jypc','');
+        }
+      }
+      
+      if (plugin == 'item') {
+        window.location.href = 'https://tb.cn/ixPM26w';
+      } else if (plugin == 'trade') {
+        window.location.href = 'https://tb.cn/iu0M26w';
+      }
+    });
+
+    /* 点击链接-年 */
+    $('.new_btn1').click(function(){
+      if (plugin == 'item') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150735','0708_promotion_click_sp','');
+        } else {
+          Beacon('TD20190708150750','0708_promotion_click_sppc','');
+        }
+      } else if (plugin == 'trade') {
+        if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+          Beacon('TD20190708150709','0708_promotion_click_jy','');
+        } else {
+          Beacon('TD20190708150722','0708_promotion_click_jypc','');
+        }
+      }
+      
+      if (plugin == 'item') {
+        window.location.href = 'https://tb.cn/ixPM26w';
+      } else if (plugin == 'trade') {
+        window.location.href = 'https://tb.cn/TwAXF5w';
+      }
+    });
+
+    /* 设置进入页面的本地缓存，同一设备第二次进入该页面时不展示特效及蒙层效果 */
+    if (plugin == 'item') {
+      localStorage.setItem('hasEnterItem', true);
+    } else if (plugin == 'trade') {
+      localStorage.setItem('hasEnterTrade', true);
+    }
+  });
+
+  /* 当屏幕尺寸有所变化时，重新计算各个图片的大小位置 */
+  window.onresize = function () {
+    resizeFunc();
+  }
+</script>
+
+</html>
