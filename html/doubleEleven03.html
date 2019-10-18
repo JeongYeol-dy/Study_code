@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱用陪你迎战双11</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            width: 100vw;
+        }
+
+        #content {
+            position: relative;
+        }
+
+        #bg-up {
+            height: 100%;
+        }
+
+        .header {
+            position: relative;
+        }
+
+        #hot-area {
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #ffec86;
+        }
+
+        .area2 {
+            display: flex;
+            margin: 20px auto !important;
+        }
+
+        .area1,
+        .area3 {
+            background-color: #ffffff;
+            border-radius: 30px;
+            border: solid 4px #ffec86;
+            margin-top: -4px;
+        }
+
+        .area3-title,
+        .guessing {
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #f93a29;
+            text-align: center;
+        }
+
+        .guessing {
+            font-size: 24px;
+        }
+
+        .guessing img {
+            position: absolute;
+            top: calc(50% - 19px);
+            left: calc(50% - 77px);
+            height: 38px;
+        }
+
+        /* 展现PC的背景图 */
+        @media screen and (min-width: 961px) {
+            #content {
+                margin: 0 auto;
+            }
+
+            #bg-up {
+                background: url('https://q.aiyongbao.com/2019Double11/activity/pc/bg05.png') top center no-repeat;
+            }
+
+            #header-img {
+                width: 960px;
+                height: 586px;
+                background: url('https://q.aiyongbao.com/2019Double11/activity/pc/header02.png') top center no-repeat;
+                background-size: cover;
+                margin: 0 auto;
+            }
+
+            .area1,
+            .area3 {
+                width: 960px;
+            }
+
+            .area1 {
+                height: 354px;
+            }
+
+            .area1-title {
+                font-family: PingFangSC-Medium;
+                font-size: 28px;
+                font-weight: normal;
+                font-stretch: normal;
+                line-height: 28px;
+                letter-spacing: 0px;
+                color: #f93a29;
+                margin-top: 18px;
+                margin-bottom: 10px;
+                margin-left: 21px;
+            }
+
+            .area1-content {
+                display: flex;
+                flex-direction: row;
+                /* overflow: hidden; */
+            }
+
+            .area1-content-left {
+                /* border: 1px solid #333; */
+                width: 672px;
+                height: 280px;
+                margin-left: 21px;
+            }
+
+            #swiper-pagination-pc {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            .area1-content-right img {
+                width: 257px;
+                height: 228px;
+                margin-top: 56px;
+            }
+
+            #swiper-container-mb {
+                display: none;
+            }
+
+            .area1-content-pc {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .area1-content-pc-0 {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .li-area1-pc-0-0,
+            .li-area1-pc-0-0 img {
+                width: 216px;
+                height: 133px;
+                cursor: pointer;
+            }
+
+            .li-area1-pc-0-0 {
+                margin-bottom: 10px;
+            }
+
+            .area2 {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #living {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #living,
+            #seckill {
+                width: 473px;
+                height: 347px;
+                background-color: #ffffff;
+                border-radius: 30px;
+                border: solid 4px #ffec86;
+                margin-top: -4px;
+            }
+
+            #seckill {
+                margin-left: 14px;
+            }
+
+            .living-title,
+            .seckill-title {
+                font-family: PingFangSC-Medium;
+                font-size: 24px;
+                font-weight: normal;
+                font-stretch: normal;
+                line-height: 24px;
+                letter-spacing: 0px;
+                color: #f93a29;
+                margin-top: 18px;
+                margin-bottom: 10px;
+                margin-left: 21px;
+            }
+
+            .living-content {
+                display: flex;
+                flex-direction: row;
+                height: 280px;
+            }
+
+            .living-offical,
+            .living-huge {
+                height: 280px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+            .living-offical,
+            .living-offical img {
+                width: 240px;
+                /* background-color: #c8c8c8; */
+                /* border-radius: 14px; */
+            }
+
+            .living-huge,
+            .living-huge img {
+                width: 192px;
+                /* background-color: #c8c8c8; */
+                /* border-radius: 14px; */
+            }
+
+            .living-offical img,
+            .living-huge img {
+                height: 280px;
+            }
+
+
+
+            .seckill-head {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .seckill-people {
+                font-family: PingFangSC-Regular;
+                font-size: 20px;
+                font-weight: normal;
+                font-stretch: normal;
+                line-height: 28px;
+                letter-spacing: 0px;
+                color: #f93a29;
+                margin-top: 18px;
+                margin-right: 20px;
+            }
+
+            .area3 {
+                height: 350px;
+            }
+
+            .rules {
+                width: 44px;
+                height: 44px;
+                /* border: 2px solid green; */
+                bottom: 208px;
+                left: calc(50% + 28px);
+            }
+
+            .guessing {
+                width: 348px;
+                height: 60px;
+                /* border: 2px solid yellow; */
+                bottom: 40px;
+                left: calc(50% - 358px);
+                line-height: 60px;
+                text-align: center;
+            }
+
+            .attending {
+                width: 358px;
+                height: 240px;
+                /* border: 2px solid peru; */
+                bottom: 13px;
+                left: calc(50% + 124px);
+            }
+
+            .guess-nums {
+                width: 260px;
+                height: 38px;
+                /* border: 2px solid purple; */
+                bottom: 222px;
+                left: calc(50% - 306px);
+                font-family: PingFangSC-Regular;
+                font-size: 26px;
+                font-weight: normal;
+                font-stretch: normal;
+                line-height: 28px;
+                letter-spacing: 0px;
+                color: #ffffff;
+                text-align: center;
+                cursor: default !important;
+            }
+
+            .area3-title {
+                font-size: 28px;
+                line-height: 28px;
+                margin-top: 18px;
+            }
+
+            .seckill-right-mb {
+                display: none;
+            }
+
+            .seckill-right-pc {
+                display: flex;
+            }
+
+            .pc-seckill-left,
+            .pc-seckill-right {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .pc-seckill-left-0,
+            .pc-seckill-left-0 img {
+                width: 216px;
+                height: 62px;
+                cursor: pointer;
+            }
+
+            .pc-seckill-right-0 img {
+                height: 134px;
+            }
+
+            .pc-seckill-left-0 {
+                margin-left: 10px;
+            }
+
+            .pc-seckill-2,
+            .pc-seckill-3,
+            .pc-seckill-4 {
+                margin-top: 10px;
+            }
+
+            .footer-text {
+                font-size: 28px;
+                line-height: 68px;
+            }
+
+            .pc-seckill-right-up,
+            .pc-seckill-right-down {
+                width: 216px;
+                height: 134px;
+                margin-left: 10px;
+            }
+
+            .pc-seckill-right-down {
+                margin-top: 10px;
+            }
+
+            /* 弹窗样式--PC */
+            .guess-dialog,
+            .rules-dialog {
+                position: absolute;
+                top: 100px;
+
+            }
+
+            .guess-dialog {
+                width: 434px;
+                left: calc(50% - 217px);
+            }
+
+            .rules-dialog {
+                width: 400px;
+                left: calc(50% - 200px);
+            }
+
+            .rules-dialog img {
+                width: 400px;
+            }
+
+            .guess-dialog-content-title {
+                height: 140px;
+            }
+
+            .title-up {
+                font-size: 26px;
+                line-height: 30px;
+            }
+
+            .title-down {
+                font-size: 45px;
+            }
+
+            .form-input-label {
+                font-size: 22px;
+                line-height: 30px;
+                margin-top: 26px;
+                margin-bottom: 14px;
+            }
+
+            .form-input input.form-input-val {
+                width: 364px;
+                height: 70px;
+                font-size: 22px;
+            }
+
+            ::-webkit-input-placeholder,
+            ::-moz-placeholder,
+            ::-moz-placeholder,
+            :-moz-placeholder {
+                font-size: 24px;
+                line-height: 33px;
+            }
+
+            .form-input-text,
+            .form-input-span {
+                font-size: 16px;
+            }
+
+            .submit-btn {
+                width: 280px;
+                height: 77px;
+                font-size: 28px;
+                line-height: 77px;
+            }
+
+            .rules-dialog-close img,
+            .guess-dialog-close img {
+                cursor: pointer;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* 展现手机的背景图 */
+        @media screen and (max-width: 960px) {
+            #content {
+                margin: 0 auto;
+                max-width: 375px;
+            }
+
+            #bg-up {
+                background: url('https://q.aiyongbao.com/2019Double11/activity/mobile/bg03.png') top center no-repeat;
+            }
+
+            #header-img {
+                width: 345px;
+                height: 500px;
+                margin: 0 auto;
+                background: url('https://q.aiyongbao.com/2019Double11/activity/mobile/header02.png') top center no-repeat;
+                background-size: cover;
+            }
+
+            .rules {
+                width: 33px;
+                height: 30px;
+                /* border: 2px solid green; */
+                bottom: 232px;
+                right: 28px;
+            }
+
+            .guessing {
+                width: 256px;
+                height: 45px;
+                /* border: 2px solid yellow; */
+                bottom: 108px;
+                left: 60px;
+                line-height: 45px;
+                text-align: center;
+            }
+
+            .attending {
+                width: 348px;
+                height: 63px;
+                /* border: 2px solid peru; */
+                bottom: 13px;
+                right: 13px;
+            }
+
+            .guess-nums {
+                width: 180px;
+                height: 26px;
+                /* border: 2px solid purple; */
+                bottom: 247px;
+                right: 96px;
+                font-family: PingFangSC-Regular;
+                font-size: 17px;
+                font-weight: normal;
+                font-stretch: normal;
+                line-height: 26px;
+                letter-spacing: 0px;
+                color: #ffffff;
+                text-align: center;
+            }
+
+            .footer-text {
+                font-size: 17px;
+                line-height: 60px;
+            }
+
+            .area1,
+            .area3 {
+                width: 345px;
+            }
+
+            .area1 {
+                height: 264px;
+            }
+
+            .area1-title,
+            .seckill-title,
+            .seckill-people {
+                font-family: PingFangSC-Medium;
+                font-weight: normal;
+                font-stretch: normal;
+                letter-spacing: 0px;
+                color: #f93a29;
+            }
+
+            .area1-title {
+                font-size: 17px;
+                line-height: 17px;
+                margin-top: 13px;
+                margin-bottom: 10px;
+                margin-left: 15px;
+            }
+
+            .area1-content {
+                width: 325px;
+                height: 208px;
+                margin-left: 6px;
+            }
+
+            .area1-content-right {
+                display: none;
+            }
+
+            #swiper-container-pc {
+                display: none;
+            }
+
+            .area1-content-mb {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .area1-content-mb-0 {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .li-area1-mb-0-0 {
+                margin-bottom: 10px;
+            }
+
+            .li-area1-mb-0-0, .li-area1-mb-0-0 img {
+                width: 158px;
+                height: 97px;
+            }
+
+            .area2 {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #living {
+                width: 345px;
+            }
+
+            #seckill {
+                background-color: #ffffff;
+                border-radius: 30px;
+                border: solid 4px #ffec86;
+                margin-top: -4px;
+            }
+
+            #seckill {
+                width: 345px;
+            }
+
+            #living {
+                height: 190px;
+            }
+
+            #seckill {
+                height: 264px;
+                margin-top: 20px;
+            }
+
+            .living-title {
+                display: none;
+            }
+
+            .living-content {
+                display: flex;
+            }
+
+            .living-offical,
+            .living-huge {
+                height: 190px;
+            }
+
+            .living-offical,
+            .living-offical img {
+                width: 190px;
+            }
+
+            .living-huge {
+                width: 145px;
+                margin-left: 10px;
+            }
+
+            .living-huge img {
+                width: 145px;
+            }
+
+            .seckill-head {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .seckill-title {
+                font-size: 17px;
+                line-height: 17px;
+                margin-left: 15px;
+                margin-top: 12px;
+            }
+
+            .seckill-people {
+                font-size: 14px;
+                line-height: 14px;
+                margin-top: 16px;
+                margin-right: 16px;
+            }
+
+            .mb-seckill-0 {
+                width: 158px;
+                height: 97px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            #li-mb-seckill-0-0 {
+                border-radius: 9px;
+            }
+
+            #li-mb-seckill-0-0, #li-mb-seckill-0-0 img {
+                width: 158px;
+                height: 97px;
+                cursor: pointer;
+            }
+
+            .area3 {
+                height: 175px;
+            }
+
+            .area3-title {
+                font-size: 17px;
+                line-height: 17px;
+                margin-top: 13px;
+            }
+
+            .seckill-right-pc {
+                display: none;
+            }
+
+            .seckill-right-mb {
+                display: flex;
+            }
+
+            .mb-seckill-left {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .mb-seckill-right {
+                border-radius: 9px;
+            }
+
+            .mb-seckill-left-up,
+            .mb-seckill-left-down {
+                width: 158px;
+                height: 97px;
+                margin-left: 8px !important;
+            }
+
+            .mb-seckill-left-up {
+                margin-top: 10px;
+            }
+
+            .mb-seckill-left-down {
+                margin-top: 10px;
+            }
+
+            .mb-seckill-right {
+                width: 157px;
+                height: 205px;
+                /* background: #ffec86; */
+                margin-left: 8px;
+                margin-top: 10px;
+            }
+
+            .mb-seckill-right, .mb-seckill-right img {
+                width: 157px;
+                height: 205px;
+            }
+
+            /* 弹窗样式--MB */
+            .guess-dialog {
+                width: 310px;
+                position: absolute;
+                top: 50px;
+                left: calc(50% - 155px);
+            }
+
+            .rules-dialog {
+                width: 310px;
+                position: absolute;
+                top: 50px;
+                left: calc(50% - 155px);
+            }
+
+            .rules-dialog img {
+                width: 310px;
+            }
+
+            .guess-dialog-content-title {
+                height: 100px;
+            }
+
+            .title-up {
+                font-size: 19px;
+                line-height: 38px;
+            }
+
+            .title-down {
+                font-size: 25px;
+            }
+
+            .form-input-label {
+                font-size: 16px;
+                line-height: 18px;
+                margin-top: 10px;
+                margin-bottom: 19px;
+            }
+
+            .form-input input.form-input-val {
+                width: 260px;
+                height: 50px;
+                font-size: 17px;
+            }
+
+            ::-webkit-input-placeholder,
+            ::-moz-placeholder,
+            :-ms-input-placeholder,
+            :-moz-placeholder {
+                font-size: 17px;
+                line-height: 33px;
+            }
+
+            .form-input-text,
+            .form-input-span {
+                font-size: 12px;
+            }
+
+            .submit-btn {
+                width: 200px;
+                height: 55px;
+                font-size: 20px;
+                line-height: 55px;
+            }
+
+            .rules-dialog-close img,
+            .guess-dialog-close img {
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* 弹窗的样式 */
+        #guess-dialog-mask,
+        #rules-dialog-mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+
+        .guess-dialog-content {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .guess-dialog-content-title,
+        .guess-dialog-content-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .guess-dialog-content-title {
+            background-color: #f84325;
+            align-items: center;
+        }
+
+        .guess-dialog-content-form {
+            padding: 28px;
+            padding-top: 0;
+        }
+
+        .form-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-input-label {
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #7b1201;
+        }
+
+        .form-input input.form-input-val {
+            background: none;
+            outline: none;
+            border: none;
+            background-color: #dcdcdc;
+            border-radius: 10px;
+            padding-left: 25px;
+        }
+
+        ::-webkit-input-placeholder,
+        ::-moz-placeholder,
+        :-ms-input-placeholder,
+        :-moz-placeholder {
+            font-family: PingFangSC-Regular;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #999999;
+        }
+
+        .form-input input.form-input-val:focus {
+            border: none;
+        }
+
+        .form-input-text,
+        .form-input-span {
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-stretch: normal;
+            line-height: 24px;
+            letter-spacing: 0px;
+            color: #999999;
+            margin-top: 18px;
+        }
+
+        .form-input-span {
+            color: #ff0000;
+        }
+
+        .form-submit {
+            display: flex;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .submit-btn {
+            background-color: #f84325;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .title-up,
+        .title-down {
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #ffffff;
+        }
+
+        .guess-dialog-close,
+        .rules-dialog-close {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://q.aiyongbao.com/js/swiper.min.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="bg-up">
+            <!-- 头部 -->
+            <div id="content" class="header">
+                <div id="header-img"></div>
+                <!-- 热区点击div -->
+                <div id="hot-area" class="rules"></div>
+                <div id="hot-area" class="guessing"></div>
+                <div id="hot-area" class="attending"></div>
+                <!-- 热区显示的文字效果 -->
+                <div id="hot-area" class="guess-nums"></div>
+            </div>
+            <!-- 爱用专享：双11店铺运营秘籍 -->
+            <div id="content" class="area1">
+                <div class="area1-title">爱用专享：双11店铺运营秘籍</div>
+                <div class="area1-content">
+                    <div id="swiper-container-pc" class="swiper-container area1-content-left">
+                        <!-- PC -->
+                        <div id="area1-content-pc" class="swiper-wrapper">
+                            <ul class="swiper-slide area1-content-pc-0 area1-content-pc-1">
+                                <li class="pc-article-1 li-area1-pc-0-0 li-area1-pc-1-1"></li>
+                                <li class="pc-article-2 li-area1-pc-0-0 li-area1-pc-1-2"></li>
+                                <li class="pc-article-3 li-area1-pc-0-0 li-area1-pc-1-3"></li>
+                                <li class="pc-article-4 li-area1-pc-0-0 li-area1-pc-1-4"></li>
+                                <li class="pc-article-5 li-area1-pc-0-0 li-area1-pc-1-5"></li>
+                                <li class="pc-article-6 li-area1-pc-0-0 li-area1-pc-1-6"></li>
+                            </ul>
+                            <ul class="swiper-slide area1-content-pc-0 area1-content-pc-2">
+                                <li class="pc-article-7 li-area1-pc-0-0 li-area1-pc-2-1"></li>
+                                <li class="pc-article-8 li-area1-pc-0-0 li-area1-pc-2-2"></li>
+                                <li class="pc-article-9 li-area1-pc-0-0 li-area1-pc-2-3"></li>
+                                <li class="pc-article-10 li-area1-pc-0-0 li-area1-pc-2-4"></li>
+                                <li class="pc-article-11 li-area1-pc-0-0 li-area1-pc-2-5"></li>
+                                <li class="pc-article-12 li-area1-pc-0-0 li-area1-pc-2-6"></li>
+                            </ul>
+                        </div>
+                        <!-- 如果需要分页器 -->
+                        <div id="swiper-pagination-pc" class="swiper-pagination"></div>
+                    </div>
+                    <div id="swiper-container-mb" class="swiper-container area1-content-left">
+                        <!-- MB -->
+                        <div id="area1-content-mb" class="swiper-wrapper">
+                            <ul class="swiper-slide area1-content-mb-0 area1-content-mb-1">
+                                <li class="mb-article-1 li-area1-mb-0-0 li-area1-mb-1-1"></li>
+                                <li class="mb-article-2 li-area1-mb-0-0 li-area1-mb-1-2"></li>
+                                <li class="mb-article-3 li-area1-mb-0-0 li-area1-mb-1-3"></li>
+                                <li class="mb-article-4 li-area1-mb-0-0 li-area1-mb-1-4"></li>
+                            </ul>
+                            <ul class="swiper-slide area1-content-mb-0 area1-content-mb-2">
+                                <li class="mb-article-5 li-area1-mb-0-0 li-area1-mb-2-1"></li>
+                                <li class="mb-article-6 li-area1-mb-0-0 li-area1-mb-2-2"></li>
+                                <li class="mb-article-7 li-area1-mb-0-0 li-area1-mb-2-3"></li>
+                                <li class="mb-article-8 li-area1-mb-0-0 li-area1-mb-2-4"></li>
+                            </ul>
+                            <ul class="swiper-slide area1-content-mb-0 area1-content-mb-3">
+                                <li class="mb-article-9 li-area1-mb-0-0 li-area1-mb-3-1"></li>
+                                <li class="mb-article-10 li-area1-mb-0-0 li-area1-mb-3-2"></li>
+                                <li class="mb-article-11 li-area1-mb-0-0 li-area1-mb-3-3"></li>
+                                <li class="mb-article-12 li-area1-mb-0-0 li-area1-mb-3-4"></li>
+                            </ul>
+                        </div>
+                        <!-- 如果需要分页器 -->
+                        <div id="swiper-pagination-mb" class="swiper-pagination"></div>
+                    </div>
+                    <!-- PC 显示的狗姐图标 -->
+                    <div class="area1-content-right">
+                        <img src="https://q.aiyongbao.com/2019Double11/activity/pc/dogsister.png" />
+                    </div>
+                </div>
+            </div>
+            <!-- 直播进行时 & 超值秒杀 -->
+            <div id="content" class="area2">
+                <div id="living">
+                    <div class="living-title">直播进行时</div>
+                    <div class="living-content">
+                        <div class="living-offical"></div>
+                        <div class="living-huge"></div>
+                    </div>
+                </div>
+                <div id="seckill">
+                    <div class="seckill-head">
+                        <div class="seckill-title">超值秒杀</div>
+                        <div class="seckill-people"></div>
+                    </div>
+                    <div class="seckill-content">
+                        <!-- PC -->
+                        <div class="seckill-right-pc">
+                            <div class="pc-seckill-left">
+                                <div class="pc-seckill-1 pc-seckill-click pc-seckill-left-0"></div>
+                                <div class="pc-seckill-2 pc-seckill-click pc-seckill-left-0"></div>
+                                <div class="pc-seckill-3 pc-seckill-click pc-seckill-left-0"></div>
+                                <div class="pc-seckill-4 pc-seckill-click pc-seckill-left-0"></div>
+                            </div>
+                            <div class="pc-seckill-right">
+                                <div class="pc-seckill-5 pc-seckill-click pc-seckill-right-0 pc-seckill-right-up"></div>
+                                <div class="pc-seckill-6 pc-seckill-click pc-seckill-right-0 pc-seckill-right-down">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MB -->
+                        <div class="seckill-right-mb">
+                            <div class="mb-seckill-left">
+                                <div class="mb-seckill-left-up swiper-container">
+                                    <ul class="mb-seckill-0 swiper-wrapper">
+                                        <li id="li-mb-seckill-0-0" class="mb-seckill-1 li-mb-seckill-1-1 swiper-slide">
+                                        </li>
+                                        <li id="li-mb-seckill-0-0" class="mb-seckill-2 li-mb-seckill-1-2 swiper-slide">
+                                        </li>
+                                    </ul>
+                                    <!-- 如果需要分页器 -->
+                                    <div id="swiper-pagination-mb" class="swiper-pagination"></div>
+                                </div>
+                                <div class="mb-seckill-left-down swiper-container">
+                                    <ul class="mb-seckill-0 swiper-wrapper">
+                                        <li id="li-mb-seckill-0-0" class="mb-seckill-3 li-mb-seckill-2-1 swiper-slide">
+                                        </li>
+                                        <li id="li-mb-seckill-0-0" class="mb-seckill-4 li-mb-seckill-2-2 swiper-slide">
+                                        </li>
+                                    </ul>
+                                    <!-- 如果需要分页器 -->
+                                    <div id="swiper-pagination-mb" class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                            <div class="mb-seckill-right">
+                                <div class="mb-seckill-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 爱用科技全体员工为您的双11保驾护航 -->
+            <div id="content" class="area3">
+                <div class="area3-title">爱用科技全体员工为您的11.11保驾护航</div>
+                <div class="area3-imgs">
+                    <ul class="area3-imgs-content">
+                        <li class="li-area3-imgs li-employees-1"></li>
+                        <li class="li-area3-imgs li-employees-2"></li>
+                        <li class="li-area3-imgs li-employees-3"></li>
+                        <li class="li-area3-imgs li-employees-4"></li>
+                        <li class="li-area3-imgs li-employees-5"></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content" class="footer-text">祝您生意兴隆，宝贝大卖！</div>
+            <!-- 点击我要竞猜弹窗 -->
+            <div id="guess-dialog-mask">
+                <div class="guess-dialog">
+                    <div class="guess-dialog-content">
+                        <div class="guess-dialog-content-title">
+                            <div class="title-up">2019天猫淘宝双11全天销售额竞猜</div>
+                            <div class="title-down">0元得爱用软件</div>
+                        </div>
+                        <div class="guess-dialog-content-form">
+                            <form action="">
+                                <div class="form-input">
+                                    <span class="form-input-label">淘宝nick：</span>
+                                    <input disabled class="form-input-val input-nick" placeholder="请输入淘宝nick" />
+                                </div>
+                                <div class="form-input">
+                                    <span class="form-input-label">销售额预测：</span>
+                                    <input maxlength="7" class="form-input-val input-num"
+                                        placeholder="请输入预测额，例：888888" />
+                                </div>
+                                <div class="form-input-text">*销售额单位为“亿”例：<span
+                                        class="form-input-span">销售额预测额为‘99999亿’</span>，则在<span
+                                        class="form-input-span">文本框内填写‘99999’</span></div>
+                                <div class="form-submit">
+                                    <button class="submit-btn">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="guess-dialog-close">
+                        <img src="https://q.aiyongbao.com/2019Double11/activity/close.png" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- 点击我要竞猜弹窗 -->
+            <div id="rules-dialog-mask">
+                <div class="rules-dialog">
+                    <div class="rules-dialog-content">
+                        <img src="https://q.aiyongbao.com/2019Double11/activity/rules.png" alt="" />
+                    </div>
+                    <div class="rules-dialog-close">
+                        <img src="https://q.aiyongbao.com/2019Double11/activity/close.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="https://q.aiyongbao.com/trade/web/js/jquery.min.js"></script>
+<script src="https://q.aiyongbao.com/js/swiper.min.js"></script>
+<script type="text/javascript">
+    const interval2 = setInterval(function () {
+        countNumsByTime();
+    }, 10000);
+
+    /* 获取 URL 中的参数 */
+    function GetUrlParam(paraName) {
+        let url = document.location.toString();
+        let arrObj = url.split('?');
+
+        if (arrObj.length > 1) {
+            let arrPara = arrObj[1].split('&');
+            let arr;
+
+            for (let i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split('=');
+
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return '';
+        } else {
+            return '';
+        }
+    }
+
+    /* swiper轮播图 */
+    function goSwiper(className) {
+        let mySwiper = new Swiper(className, {
+            effect: 'slide', // 滑动效果
+            // 轮播图的方向，也可以是vertical方向
+            direction: 'horizontal',
+            // 循环播放
+            loop: true,
+            // 切换的速度
+            speed: 800, //滑动或者自动换页时的速度
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                type: 'bullets',
+            },
+            paginationClickable: true,
+            // 这样，即使我们滑动之后， 定时器也不会被清除
+            autoplayDisableOnInteraction: false,
+            // 设置自动播放
+            autoplay: {
+                delay: 2500,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+        });
+        mySwiper.pagination.bullets.css('background', 'red');
+    }
+
+    /* 计算已竞猜人数及已购买人数 */
+    function countNumsByTime(current = '') {
+        // 1-- 计算已竞猜人数
+        // 获取当前时间
+        let today = current ? new Date(current) : new Date();
+        let todayTime = today.getTime();
+        // 获取活动的开始时间2019-10-21
+        let activity = new Date('2019-10-16 00:00:00');
+        // let activity = new Date('2019-10-21 00:00:00');
+        let activityTime = activity.getTime();
+        // let deadline = new Date('2019-10-17 23:59:59').getTime();
+        let deadline = new Date('2019-11-11 23:59:59').getTime();
+
+        let seconds = (todayTime - activityTime) / 1000; // 得到期间的所有秒数
+        let peopleNum = Math.ceil((seconds / 10) * 4); // 竞猜---每10秒增加4人
+        let purchaseNum = Math.ceil((seconds / 10) * 2); // 购买---每10秒增加2人
+
+        // 到达截止日期则停止定时器
+        if (todayTime > deadline) {
+            clearInterval(interval2);
+            $('.guessing').html('活动已结束');
+        }
+
+        $('.guess-nums').html(`${peopleNum}人已竞猜`);
+        $('.seckill-people').html(`${purchaseNum}人已购买`);
+    }
+
+    window.onload = function () {
+        // let device = /(iPhone|iPad|iPod|iOS|Android|Mobile)/i.test(navigator.userAgent) ? 'mobile' : 'pc';
+
+        // if (device == 'pc') {
+        //     // PC-爱用专享轮播
+        //     goSwiper('#swiper-container-pc.swiper-container');
+        // } else {
+        //     // 爱用专享轮播
+        //     goSwiper('#swiper-container-mb.swiper-container');
+        //     // 超值秒杀轮播
+        //     goSwiper('.mb-seckill-left-up.swiper-container');
+        //     goSwiper('.mb-seckill-left-down.swiper-container');
+        // }
+    }
+
+    $(function () {
+        let nick = GetUrlParam('nick');
+        let platform = GetUrlParam('platform');
+
+        /* 请求数据 */
+        $.ajax({
+            type: "GET",
+            url: "http://192.168.1.75:8081/double11/getPageInfomation",
+            data: {
+                nick: decodeURIComponent(nick),
+                platform,
+            },
+            success: function (result) {
+                console.log('result', result);
+                if (result.code == '200') {
+                    /* 处理用户信息 */
+                    if (result.data.guess_info.nick) {
+                        $('.guessing').html(`我的预测${result.data.guess_info.guess_amounts}亿`);
+                    } else {
+                        $('.guessing').html('<img src="https://q.aiyongbao.com/2019Double11/activity/guess.png" />');
+                    }
+
+                    /* 处理文章页信息 */
+                    $.each(result.data.article_list, function (key, val) {
+                        let className = platform == 'pc' ? `pc-article-${key + 1}` : `mb-article-${key + 1}`;
+                        $(`.${className}`).html(`<img src=${val.cover} />`);
+
+                        
+                        /* 点击跳转 */
+                        // $(`.${className}`).click(function () {
+                        //     location.href = `${val.url}?id=${val.id}`;
+                        // });
+                    });
+
+                    /* 如果图片<12张，则填入敬请期待的图 */
+                    if (result.data.article_list.length != 12) {
+                        for (let i = result.data.article_list.length; i < 12; i++) {
+                            let className = platform == 'pc' ? `pc-article-${i + 1}` : `mb-article-${i + 1}`;
+                            $(`.${className}`).html(`<img src='https://q.aiyongbao.com/2019Double11/article/waiting.png' />`);
+                        }
+                    }
+
+                    /* 处理直播&秒杀信息 */
+                    $('.living-offical').html(`<img src=${result.data.live_video_list.taobao.cover} />`);
+                    $('.living-huge').html(`<img src=${result.data.live_video_list.aiyong.cover} />`);
+
+                    $('.living-offical').click(function () {
+                        if (result.data.live_video_list.taobao.url) {
+                            location.href = result.data.live_video_list.taobao.url;
+                        }
+                    });
+                    $('.living-huge').click(function () {
+                        if (result.data.live_video_list.aiyong.url) {
+                            location.href = result.data.live_video_list.aiyong.url;
+                        } else {
+                            return false;
+                        }
+                    });
+
+                    /* 超值秒杀 */
+                    $.each(result.data.coupon_list, function (key, val) {
+                        let className = platform == 'pc' ? `pc-seckill-${key + 1}` : `mb-seckill-${key + 1}`;
+                        $(`.${className}`).html(`<img src=${val.image} />`);
+
+                        /* 点击跳转 */
+                        $(`.${className}`).click(function () {
+                            location.href = val.url;
+                        });
+                    });
+
+                    /* 处理员工信息 */
+
+                }
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+
+        $(document).ready(function () {
+            let today = new Date().getTime();
+            let deadline = new Date('2019-11-11 23:59:59').getTime();
+
+            if (today > deadline) {
+                clearInterval(interval2);
+                $('.guessing').html('活动已结束');
+                countNumsByTime('2019-11-11 23:59:59');
+            } else {
+                countNumsByTime();
+            }
+
+            if ($('.guessing').html() == '活动已结束' || $('.guessing').html().indexOf('预测') != -1) {
+                $('.guessing').css('cursor', 'default');
+            }
+
+            let device = /(iPhone|iPad|iPod|iOS|Android|Mobile)/i.test(navigator.userAgent) ? 'mobile' : 'pc';
+
+            if (device == 'pc') {
+                // PC-爱用专享轮播
+                goSwiper('#swiper-container-pc.swiper-container');
+            } else {
+                // 爱用专享轮播
+                goSwiper('#swiper-container-mb.swiper-container');
+                // 超值秒杀轮播
+                goSwiper('.mb-seckill-left-up.swiper-container');
+                goSwiper('.mb-seckill-left-down.swiper-container');
+            }
+        });
+
+        /* 点击活动规则 */
+        $('.rules').click(function () {
+            $('#rules-dialog-mask').css('display', 'block');
+        });
+
+        /* 点击关闭按钮 */
+        $('.guess-dialog-close').click(function () {
+            $('#guess-dialog-mask').css('display', 'none');
+        });
+        $('.rules-dialog-close').click(function () {
+            $('#rules-dialog-mask').css('display', 'none');
+        });
+
+        /* 点击我要竞猜的按钮 */
+        $('.guessing').click(function () {
+            if ($('.guessing').html() == '活动已结束' || $('.guessing').html().indexOf('预测') != -1) {
+                return false;
+            }
+
+            $('#guess-dialog-mask').css('display', 'block');
+            $('.input-nick').val(decodeURIComponent(nick));
+        });
+
+        /* 点击提交 */
+        $('.submit-btn').click(function () {
+            if (!$('.input-num').val()) {
+                alert('请输入预测金额！');
+                return false;
+            } else {
+                /* 提交成功后更改按钮的值 */
+                $.ajax({
+                    type: "GET",
+                    url: "http://192.168.1.75:8081/double11/guess",
+                    data: {
+                        nick,
+                        guess_amounts: $('.input-num').val(),
+                    },
+                    success: function (data) {
+                        if (data.code == '200') {
+                            $('#guess-dialog-mask').css('display', 'none');
+                            $('.guessing').html(`我的预测${$('.input-num').val()}亿`);
+                        }
+                    },
+                });
+            }
+        });
+
+        $('.attending').click(function () {
+            // alert('点击了报名入口');
+            location.href = 'https://pages.tmall.com/wow/seller/act/2019tb1111-gps-3-1?wh_biz=tm&acm=lb-zebra-545634-7172080.1003.4.6556024&scm=1003.4.lb-zebra-545634-7172080.OTHER_15658459615942_6556024';
+        });
+    });
+</script>
+
+</html>
