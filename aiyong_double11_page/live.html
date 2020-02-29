@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="common.js"></script>
+	<link rel="stylesheet" href="article.css">
+	<script type="text/javascript" src="//q.aiyongbao.com/trade/web/js/jquery.min.js"></script>
+    <title>直播天团 带货专区</title>
+    <style>
+        .container {
+            position: relative;
+        }
+        .live-people {
+            position: absolute;
+        }
+        .live-people-1 {
+            /* border: 1px solid red; */
+            top: 32%;
+        }
+        .live-people-2 {
+            /* border: 1px solid green; */
+            top: 44%;
+        }
+        .live-people-3 {
+            /* border: 1px solid goldenrod; */
+            top: 56%;
+        }
+        .live-people-4 {
+            /* border: 1px solid palevioletred; */
+            top: 68%;
+        }
+        .live-people-5 {
+            /* border: 1px solid purple; */
+            top: 81%;
+        }
+    </style>
+</head>
+<body>
+<div class="page-content">
+	<div id="image-content" class="image-content">
+        <div class="container">
+            <img class="image-item" src="//q.aiyongbao.com/2019Double11/activity/livePeople.png">
+            <!-- 5个直播热区 -->
+            <div class="live-people live-people-1"></div>
+            <div class="live-people live-people-2"></div>
+            <div class="live-people live-people-3"></div>
+            <div class="live-people live-people-4"></div>
+            <div class="live-people live-people-5"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const liveUrl = ['https://v.taobao.com/v/price/detail?spm=a21xh.11250948.0.0.52df4251tMDi4S&price_id=207482', 'https://v.taobao.com/v/price/detail?spm=a21xh.11250948.0.0.52df4251ydkzap&price_id=207483', 'https://v.taobao.com/v/price/detail?spm=a21xh.11250948.0.0.52df4251ZjMIdl&price_id=200211', 'https://v.taobao.com/v/price/detail?spm=a21xh.11250948.0.0.52df4251IKswQR&price_id=200102', 'https://v.taobao.com/v/price/detail?spm=a21xh.11250948.0.0.52df4251m8a4DZ&price_id=207480'];
+
+    function pageResize () {
+        for (let i = 0; i < 5; i++) {            
+            $(`.live-people-${i+1}`).css({
+                width: $('.image-item').width()*5/16,
+                height: $('.image-item').width()*5/16,
+            });
+            if ((i + 1) % 2) {
+                $(`.live-people-${i+1}`).css({
+                    left: `${$('.image-item').width()*4/29}px`,
+                });
+            } else {
+                $(`.live-people-${i+1}`).css({
+                    right: `${$('.image-item').width()*4/29}px`,
+                });
+            }
+
+            $(`.live-people-${i+1}`).click(function () {
+                goToLink(liveUrl[i])
+            });
+        }
+    }
+  
+    window.onload = function () {
+        pageResize();
+        if (getQueryVariable('platform') == 'pc') {
+            $(`.live-people`).css({
+                cursor: 'pointer'
+            });
+        }
+    };
+
+    window.onresize = function () {
+        pageResize();
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+.page-content{
+    height: 100%;
+}
+.image-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.image-item{
+    width: 677px;
+}
+.click-jump{
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    color: #392300;
+    background-color: #ffec86;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+@media screen and (max-width: 800px){
+    .image-item{
+        width: 100%;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="article.css">
+	<script type="text/javascript" src="//q.aiyongbao.com/trade/web/js/jquery.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
+	<title>这是标题</title>
+	<script>
+        function jumpAppPage(article_content){
+            doBeacon(`jumAppPage-article-id-${getQueryVariable('id')}`);
+            QN.emit('app.double11Jump',{url: article_content.content_url,url_app:article_content.url_app});
+        }
+	</script>
+</head>
+<body>
+<div class="page-content">
+	<div id="image-content" class="image-content">
+
+	</div>
+	<div onclick="jumpAppPage(window.article_content)" id="click-jump" class="click-jump">点击跳转功能</div>
+</div>
+</body>
+<script>
+	$().ready(function(){
+		$.ajax({
+            type: 'GET',
+			url:"//crm.aiyongbao.com/double11/getPageArticleContent",
+			data:{
+                id:getQueryVariable('id'),
+			},
+			success:function(res){
+                console.log(res);
+                if (res.code === 200){
+                    window.article_content = res.data.article_content;
+                    document.title = window.article_content.title;
+                    window.article_content.content_images.forEach((value)=>{
+                        $("#image-content").append(`<img class="image-item" src="${value.image_path}">`)
+                    })
+	                if (getQueryVariable('platform') !== 'pc' && window.article_content.content_url){
+	                    $('#click-jump').css("display","block");
+                        $('#click-jump').text(window.article_content.content_url_span)
+	                }
+                    // 文章内容展现埋点
+                    doBeacon(`article-${getQueryVariable('id')}-content-show`);
+                }
+            }
+		})
+        $(window).on('touchstart',function(){
+            $('#click-jump').css('opacity',0.3)
+
+        });
+        $(window).on('touchend',function(){
+            $('#click-jump').css('opacity',1)
+        })
+    })
+</script>
+</html>
